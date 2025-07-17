@@ -13,39 +13,66 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\math">
-      <UniqueIdentifier>{362f9dab-dda6-47d2-b6e3-d975ecda30d5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\core">
+    <Filter Include="Header Files\Core">
       <UniqueIdentifier>{33be0818-8b71-4805-85e5-78797f234a35}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\math">
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{62f31e80-3d77-402d-8be4-f0998f459277}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math">
       <UniqueIdentifier>{60c4c167-9593-490a-b636-72a277fb4e56}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\core">
-      <UniqueIdentifier>{62f31e80-3d77-402d-8be4-f0998f459277}</UniqueIdentifier>
+    <Filter Include="Header Files\Math">
+      <UniqueIdentifier>{362f9dab-dda6-47d2-b6e3-d975ecda30d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Shapes">
+      <UniqueIdentifier>{9b936227-e924-4444-9842-ca21df681b3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Shapes">
+      <UniqueIdentifier>{8cbae5b6-ec17-40d4-827b-bc918db4f010}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vector3.cpp">
-      <Filter>Source Files\math</Filter>
+      <Filter>Source Files\Math</Filter>
     </ClCompile>
     <ClCompile Include="Color.cpp">
-      <Filter>Source Files\core</Filter>
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="3DRenderer.cpp">
-      <Filter>Source Files\core</Filter>
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Vertex.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Cube.cpp">
+      <Filter>Source Files\Core\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector3.h">
-      <Filter>Header Files\math</Filter>
+      <Filter>Header Files\Math</Filter>
     </ClInclude>
     <ClInclude Include="Color.h">
-      <Filter>Header Files\core</Filter>
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="Vertex.h">
-      <Filter>Header Files\core</Filter>
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>Header Files\Core\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
