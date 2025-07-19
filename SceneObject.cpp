@@ -32,5 +32,5 @@ const Mesh& SceneObject::getMesh() const {
 }
 
 void SceneObject::translate(const Vector3& delta) {
-	transform.position = transform.position + delta;
+	transform.position += delta;
 }
