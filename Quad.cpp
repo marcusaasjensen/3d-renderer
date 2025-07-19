@@ -1,7 +1,7 @@
 #include <vector>
 #include "Quad.h"
 
-Quad::Quad() : mesh{
+Quad::Quad() : mesh {
     {
         Vertex(0, 0, 0),
         Vertex(1, 0, 0),

@@ -3,8 +3,8 @@
 #include "Vector3.h"
 
 struct Cube {
-	Mesh mesh;
-	Vector3 position;
+	Transform transform;
+	std::vector<Quad> faces;
 
 	Cube();
 	Cube(Vector3 position);

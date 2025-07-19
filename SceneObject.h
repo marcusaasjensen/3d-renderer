@@ -1,0 +1,31 @@
+#pragma once
+#include <string>
+#include "Transform.h"
+#include "Mesh.h"
+
+class SceneObject {
+private:
+	std::string name;
+	Transform transform;
+	Mesh mesh;
+
+public:
+	SceneObject();
+	~SceneObject() = default;
+	SceneObject(const SceneObject& other) = default;
+	SceneObject(const std::string& name, const Transform& transform, const Mesh& mesh);
+
+public:
+	void setName(const std::string name);
+	std::string getName() const;
+
+	void setTransform(const Transform& transform);
+	Transform& getTransform();
+	const Transform& getTransform() const;
+
+	const Mesh& getMesh() const;
+
+	void translate(const Vector3& delta);
+	void rotate(float angle, const Vector3& axis);
+	void scale(const Vector3& factor);
+};

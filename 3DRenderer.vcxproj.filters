@@ -25,12 +25,6 @@
     <Filter Include="Header Files\Math">
       <UniqueIdentifier>{362f9dab-dda6-47d2-b6e3-d975ecda30d5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Core\Shapes">
-      <UniqueIdentifier>{9b936227-e924-4444-9842-ca21df681b3c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Core\Shapes">
-      <UniqueIdentifier>{8cbae5b6-ec17-40d4-827b-bc918db4f010}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vector3.cpp">
@@ -39,20 +33,23 @@
     <ClCompile Include="Color.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="3DRenderer.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
     <ClCompile Include="Vertex.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="Mesh.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Cube.cpp">
-      <Filter>Source Files\Core\Shapes</Filter>
-    </ClCompile>
     <ClCompile Include="Transform.cpp">
       <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneObject.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="3DRenderer.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -68,10 +65,13 @@
     <ClInclude Include="Mesh.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Cube.h">
-      <Filter>Header Files\Core\Shapes</Filter>
-    </ClInclude>
     <ClInclude Include="Transform.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneObject.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
