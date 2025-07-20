@@ -10,5 +10,5 @@ struct Vector4 {
 
     Vector4 operator+(const Vector4& other) const;
     Vector4 operator*(float scalar) const;
-    Vector3 toVector3();
+    Vector3 toVector3() const;
 };
