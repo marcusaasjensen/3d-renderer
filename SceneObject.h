@@ -2,6 +2,7 @@
 #include <string>
 #include "Transform.h"
 #include "Mesh.h"
+#include "Matrix4.h"
 
 class SceneObject {
 private:
