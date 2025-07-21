@@ -69,3 +69,15 @@ bool Vector3::operator==(const Vector3& other) const {
         std::abs(y - other.y) < epsilon &&
         std::abs(z - other.z) < epsilon;
 }
+
+Vector3 Vector3::normalized() const
+{
+    float length = std::sqrt(x * x + y * y + z * z);
+
+    if (length == 0.0f) {
+        return Vector3(0.0f, 0.0f, 0.0f);
+    }
+
+    return Vector3(x / length, y / length, z / length);
+}
+
