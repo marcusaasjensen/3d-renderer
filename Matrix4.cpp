@@ -1,6 +1,7 @@
 #include "Matrix4.h"
 #include <cstring>
 #include <cmath>
+#include <ostream>
 
 Matrix4::Matrix4() {
 	for (int i = 0; i < 16; ++i)
@@ -127,4 +128,42 @@ Matrix4 Matrix4::scaleZ(float factor) {
 	Matrix4 result = identity();
 	result(2, 2) = factor;
 	return result;
+}
+
+
+Matrix4 Matrix4::scale(float factor, const Vector3& axis)
+{
+	Matrix4 result = identity();
+	result(0, 0) = factor;
+	result(1, 1) = factor;
+	result(2, 2) = factor;
+	return Matrix4();
+}
+
+
+Matrix4 Matrix4::perspective(float fovY, float aspect, float znear, float zfar) {
+	Matrix4 result;
+
+	float tanHalfFovY = std::tan(fovY / 2.0f);
+	float zRange = znear - zfar;
+
+	result(0, 0) = 1.0f / (aspect * tanHalfFovY);
+	result(1, 1) = 1.0f / tanHalfFovY;
+	result(2, 2) = (zfar + znear) / zRange;
+	result(2, 3) = (2.0f * zfar * znear) / zRange;
+	result(3, 2) = -1.0f;
+	result(3, 3) = 0.0f;
+
+	return result;
+}
+
+std::ostream& Matrix4::operator<<(std::ostream& os) {
+	for (int row = 0; row < 4; ++row) {
+		os << "| ";
+		for (int col = 0; col < 4; ++col) {
+			os << (*this)(row, col) << " ";
+		}
+		os << "|\n";
+	}
+	return os;
 }

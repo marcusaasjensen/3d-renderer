@@ -1,4 +1,6 @@
 #pragma once
+
+#include <iostream>
 #include "Vector4.h"
 #include "Vector3.h"
 
@@ -13,6 +15,7 @@ struct alignas(16) Matrix4 {
 	Matrix4 operator-(const Matrix4& other) const;
 	Matrix4 operator*(const Matrix4& other) const;
 	Vector4 operator*(const Vector4& vec) const;
+	std::ostream& operator<<(std::ostream& os);
 
 	float& operator()(int row, int col);
 	const float& operator()(int row, int col) const;
@@ -27,6 +30,7 @@ struct alignas(16) Matrix4 {
 	static Matrix4 scaleX(float factor);
 	static Matrix4 scaleY(float factor);
 	static Matrix4 scaleZ(float factor);
+	static Matrix4 perspective(float fovY, float aspect, float znear, float zfar);
 	static Matrix4 scale(float factor, const Vector3& axis);
 	static Matrix4 rotateX(float angle);
 	static Matrix4 rotateY(float angle);
