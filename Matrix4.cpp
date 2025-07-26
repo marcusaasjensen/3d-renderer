@@ -112,6 +112,18 @@ Matrix4 Matrix4::translate(float delta, const Vector3& axis)
 	return result;
 }
 
+Matrix4 Matrix4::translate(float dx, float dy, float dz)
+{
+	Matrix4 result = identity();
+
+	result(0, 3) = dx;
+	result(1, 3) = dy;
+	result(2, 3) = dz;
+
+	return result;
+}
+
+
 Matrix4 Matrix4::scaleX(float factor) {
 	Matrix4 result = identity();
 	result(0, 0) = factor;
@@ -223,6 +235,27 @@ Matrix4 Matrix4::perspective(float fovY, float aspect, float znear, float zfar) 
 
 	return result;
 }
+
+Matrix4 Matrix4::orthographic(float left, float right, float bottom, float top, float znear, float zfar) {
+	Matrix4 result;
+
+	float rl = right - left;
+	float tb = top - bottom;
+	float fn = zfar - znear;
+
+	result(0, 0) = 2.0f / rl;
+	result(1, 1) = 2.0f / tb;
+	result(2, 2) = -2.0f / fn;
+
+	result(0, 3) = -(right + left) / rl;
+	result(1, 3) = -(top + bottom) / tb;
+	result(2, 3) = -(zfar + znear) / fn;
+
+	result(3, 3) = 1.0f;
+
+	return result;
+}
+
 
 std::ostream& Matrix4::operator<<(std::ostream& os) {
 	for (int row = 0; row < 4; ++row) {

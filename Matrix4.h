@@ -31,6 +31,7 @@ struct alignas(16) Matrix4 {
 	static Matrix4 scaleY(float factor);
 	static Matrix4 scaleZ(float factor);
 	static Matrix4 perspective(float fovY, float aspect, float znear, float zfar);
+	static Matrix4 orthographic(float left, float right, float bottom, float top, float znear, float zfar);
 	static Matrix4 scale(float factor, const Vector3& axis);
 	static Matrix4 rotateX(float angle);
 	static Matrix4 rotateY(float angle);
@@ -40,4 +41,5 @@ struct alignas(16) Matrix4 {
 	static Matrix4 translateY(float delta);
 	static Matrix4 translateZ(float delta);
 	static Matrix4 translate(float delta, const Vector3& axis);
+	static Matrix4 translate(float dx, float dy, float dz);
 };
