@@ -32,7 +32,7 @@ float* Matrix4::data() {
 	return m;
 }
 
-Matrix4 Matrix4::identity() {
+Matrix4 Matrix4::Identity() {
 	return Matrix4();
 }
 
@@ -72,7 +72,7 @@ Vector4 Matrix4::operator*(const Vector4& v) const {
 	return result;
 }
 
-Matrix4 Matrix4::transpose() const {
+Matrix4 Matrix4::Transpose() const {
 	Matrix4 result;
 	for (int row = 0; row < 4; ++row) {
 		for (int col = 0; col < 4; ++col) {
@@ -82,28 +82,28 @@ Matrix4 Matrix4::transpose() const {
 	return result;
 }
 
-Matrix4 Matrix4::translateX(float delta) {
-	Matrix4 result = identity();
+Matrix4 Matrix4::TranslateX(float delta) {
+	Matrix4 result = Identity();
 	result(0, 3) = delta;
 	return result;
 }
 
-Matrix4 Matrix4::translateY(float delta) {
-	Matrix4 result = identity();
+Matrix4 Matrix4::TranslateY(float delta) {
+	Matrix4 result = Identity();
 	result(1, 3) = delta;
 	return result;
 }
 
-Matrix4 Matrix4::translateZ(float delta) {
-	Matrix4 result = identity();
+Matrix4 Matrix4::TranslateZ(float delta) {
+	Matrix4 result = Identity();
 	result(2, 3) = delta;
 	return result;
 }
 
-Matrix4 Matrix4::translate(float delta, const Vector3& axis)
+Matrix4 Matrix4::Translate(float delta, const Vector3& axis)
 {
 	Vector3 dir = axis.normalized();
-	Matrix4 result = identity();
+	Matrix4 result = Identity();
 
 	result(0, 3) = dir.x * delta;
 	result(1, 3) = dir.y * delta;
@@ -112,9 +112,9 @@ Matrix4 Matrix4::translate(float delta, const Vector3& axis)
 	return result;
 }
 
-Matrix4 Matrix4::translate(float dx, float dy, float dz)
+Matrix4 Matrix4::Translate(float dx, float dy, float dz)
 {
-	Matrix4 result = identity();
+	Matrix4 result = Identity();
 
 	result(0, 3) = dx;
 	result(1, 3) = dy;
@@ -123,9 +123,9 @@ Matrix4 Matrix4::translate(float dx, float dy, float dz)
 	return result;
 }
 
-Matrix4 Matrix4::translate(Vector3 dv)
+Matrix4 Matrix4::Translate(Vector3 dv)
 {
-	Matrix4 result = identity();
+	Matrix4 result = Identity();
 
 	result(0, 3) = dv.x;
 	result(1, 3) = dv.y;
@@ -135,48 +135,48 @@ Matrix4 Matrix4::translate(Vector3 dv)
 }
 
 
-Matrix4 Matrix4::scaleX(float factor) {
-	Matrix4 result = identity();
+Matrix4 Matrix4::ScaleX(float factor) {
+	Matrix4 result = Identity();
 	result(0, 0) = factor;
 	return result;
 }
 
-Matrix4 Matrix4::scaleY(float factor) {
-	Matrix4 result = identity();
+Matrix4 Matrix4::ScaleY(float factor) {
+	Matrix4 result = Identity();
 	result(1, 1) = factor;
 	return result;
 }
 
-Matrix4 Matrix4::scaleZ(float factor) {
-	Matrix4 result = identity();
+Matrix4 Matrix4::ScaleZ(float factor) {
+	Matrix4 result = Identity();
 	result(2, 2) = factor;
 	return result;
 }
 
 
-Matrix4 Matrix4::scale(float factor, const Vector3& axis)
+Matrix4 Matrix4::Scale(float factor, const Vector3& axis)
 {
-	Matrix4 result = identity();
+	Matrix4 result = Identity();
 	result(0, 0) = factor;
 	result(1, 1) = factor;
 	result(2, 2) = factor;
-	return Matrix4();
+	return result;
 }
 
-Matrix4 Matrix4::scale(const Vector3& factor)
+Matrix4 Matrix4::Scale(const Vector3& factor)
 {
-	Matrix4 result = identity();
+	Matrix4 result = Identity();
 	result(0, 0) = factor.x;
 	result(1, 1) = factor.y;
 	result(2, 2) = factor.z;
-	return Matrix4();
+	return result;
 }
 
-Matrix4 Matrix4::rotateX(float angle) {
+Matrix4 Matrix4::RotateX(float angle) {
 	float c = std::cos(angle);
 	float s = std::sin(angle);
 
-	Matrix4 result = identity();
+	Matrix4 result = Identity();
 	result(1,1) = c;
 	result(1,2) = -s;
 	result(2,1) = s;
@@ -185,11 +185,11 @@ Matrix4 Matrix4::rotateX(float angle) {
 	return result;
 }
 
-Matrix4 Matrix4::rotateY(float angle) {
+Matrix4 Matrix4::RotateY(float angle) {
 	float c = std::cos(angle);
 	float s = std::sin(angle);
 
-	Matrix4 result = identity();
+	Matrix4 result = Identity();
 	result(0, 0) = c;
 	result(0, 2) = s;
 	result(2, 0) = -s;
@@ -198,11 +198,11 @@ Matrix4 Matrix4::rotateY(float angle) {
 	return result;
 }
 
-Matrix4 Matrix4::rotateZ(float angle) {
+Matrix4 Matrix4::RotateZ(float angle) {
 	float c = std::cos(angle);
 	float s = std::sin(angle);
 
-	Matrix4 result = identity();
+	Matrix4 result = Identity();
 	result(0, 0) = c;
 	result(0, 1) = -s;
 	result(1, 0) = s;
@@ -211,21 +211,21 @@ Matrix4 Matrix4::rotateZ(float angle) {
 	return result;
 }
 
-Matrix4 Matrix4::rotate(const Vector3& angles) {
-	Matrix4 rx = Matrix4::rotateX(angles.x);
-	Matrix4 ry = Matrix4::rotateY(angles.y);
-	Matrix4 rz = Matrix4::rotateZ(angles.z);
+Matrix4 Matrix4::RotateEuler(const Vector3& angles) {
+	Matrix4 rx = Matrix4::RotateX(angles.x);
+	Matrix4 ry = Matrix4::RotateY(angles.y);
+	Matrix4 rz = Matrix4::RotateZ(angles.z);
 	return rz * ry * rx;
 }
 
-Matrix4 Matrix4::rotate(float angle, const Vector3& axis) {
+Matrix4 Matrix4::RotateEuler(float angle, const Vector3& axis) {
 	Vector3 n = axis.normalized();
 	float x = n.x, y = n.y, z = n.z;
 	float c = std::cos(angle);
 	float s = std::sin(angle);
 	float t = 1.0f - c;
 
-	Matrix4 result = identity();
+	Matrix4 result = Identity();
 
 	result(0, 0) = t * x * x + c;
 	result(0, 1) = t * x * y - s * z;
@@ -246,7 +246,7 @@ Matrix4 Matrix4::rotate(float angle, const Vector3& axis) {
 	return result;
 }
 
-Matrix4 Matrix4::perspective(float fovY, float aspect, float znear, float zfar) {
+Matrix4 Matrix4::Perspective(float fovY, float aspect, float znear, float zfar) {
 	Matrix4 result;
 
 	float tanHalfFovY = std::tan(fovY / 2.0f);
@@ -262,7 +262,7 @@ Matrix4 Matrix4::perspective(float fovY, float aspect, float znear, float zfar) 
 	return result;
 }
 
-Matrix4 Matrix4::orthographic(float left, float right, float bottom, float top, float znear, float zfar) {
+Matrix4 Matrix4::Orthographic(float left, float right, float bottom, float top, float znear, float zfar) {
 	Matrix4 result;
 
 	float rl = right - left;

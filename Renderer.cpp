@@ -6,7 +6,7 @@ Canvas& Renderer::getCanvas() {
     return canvas;
 }
 
-void Renderer::render(const SceneObject& object, const Matrix4& proj) {
+void Renderer::render(const SceneObject& object, const Camera& camera) {
     const auto& mesh = object.getMesh();
     const Matrix4& model = object.getTransform().getModel();
 
@@ -16,7 +16,7 @@ void Renderer::render(const SceneObject& object, const Matrix4& proj) {
         for (int j = 0; j < 3; ++j) {
             int idx = mesh.indices[i + j];
             Vector4 v(mesh.vertices[idx].position);
-            v = proj * (model * v);
+            v = camera.getProjection() * (model * v);
 
             if (v.w != 0.0f) {
                 v.x /= v.w;
@@ -41,11 +41,11 @@ void Renderer::render(const SceneObject& object, const Matrix4& proj) {
     }
 }
 
-void Renderer::render(const Scene& scene, const Matrix4& proj) {
+void Renderer::render(const Scene& scene, const Camera& camera) {
     canvas.clear();
 
     for (const SceneObject& object : scene.getObjects()) {
-        render(object, proj);
+        render(object, camera);
     }
 }
 

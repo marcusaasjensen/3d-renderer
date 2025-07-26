@@ -8,7 +8,7 @@ private:
     std::vector<SceneObject> objects;
     std::string name;
 public:
-    Scene(const std::string& name);
+    explicit Scene(const std::string& name);
 
     void addObject(const SceneObject& object);
     const std::vector<SceneObject>& getObjects() const;

@@ -1,5 +1,6 @@
 #include "Canvas.h"
 #include <fstream>
+#include <iostream>
 
 Canvas::Canvas(int w, int h) : width(w), height(h), buffer(w* h * 3, 0) {}
 
@@ -22,4 +23,5 @@ void Canvas::saveToPPM(const std::string& filename) const {
         out << (int)buffer[i] << " " << (int)buffer[i + 1] << " " << (int)buffer[i + 2] << "\n";
     }
     out.close();
+    std::cout << "Wrote " << filename << std::endl;
 }

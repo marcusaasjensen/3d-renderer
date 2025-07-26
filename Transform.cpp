@@ -9,9 +9,9 @@ Transform::Transform(const Vector3& position, const Vector3& rotation, const Vec
 }
 
 Matrix4 Transform::getModel() const {
-    Matrix4 T = Matrix4::translate(position);
-    Matrix4 R = Matrix4::rotate(rotation);
-    Matrix4 S = Matrix4::scale(scale);
+    Matrix4 T = Matrix4::Translate(position);
+    Matrix4 R = Matrix4::RotateEuler(rotation);
+    Matrix4 S = Matrix4::Scale(scale);
     return T * R * S;
 }
 

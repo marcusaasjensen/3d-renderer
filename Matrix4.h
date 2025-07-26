@@ -23,26 +23,26 @@ struct alignas(16) Matrix4 {
 	const float* data() const;
 	float* data();
 
-	static Matrix4 identity();
-	Matrix4 transpose() const;
+	static Matrix4 Identity();
+	Matrix4 Transpose() const;
 
 	// Transform operations
-	static Matrix4 scaleX(float factor);
-	static Matrix4 scaleY(float factor);
-	static Matrix4 scaleZ(float factor);
-	static Matrix4 perspective(float fovY, float aspect, float znear, float zfar);
-	static Matrix4 orthographic(float left, float right, float bottom, float top, float znear, float zfar);
-	static Matrix4 scale(float factor, const Vector3& axis);
-	static Matrix4 scale(const Vector3& factor);
-	static Matrix4 rotateX(float angle);
-	static Matrix4 rotateY(float angle);
-	static Matrix4 rotateZ(float angle);
-	static Matrix4 rotate(float angle, const Vector3& axis);
-	static Matrix4 rotate(const Vector3& angles);
-	static Matrix4 translateX(float delta);
-	static Matrix4 translateY(float delta);
-	static Matrix4 translateZ(float delta);
-	static Matrix4 translate(float delta, const Vector3& axis);
-	static Matrix4 translate(float dx, float dy, float dz);
-	static Matrix4 translate(Vector3 dv);
+	static Matrix4 ScaleX(float factor);
+	static Matrix4 ScaleY(float factor);
+	static Matrix4 ScaleZ(float factor);
+	static Matrix4 Perspective(float fovY, float aspect, float znear, float zfar);
+	static Matrix4 Orthographic(float left, float right, float bottom, float top, float znear, float zfar);
+	static Matrix4 Scale(float factor, const Vector3& axis);
+	static Matrix4 Scale(const Vector3& factor);
+	static Matrix4 RotateX(float angle);
+	static Matrix4 RotateY(float angle);
+	static Matrix4 RotateZ(float angle);
+	static Matrix4 RotateEuler(float angle, const Vector3& axis);
+	static Matrix4 RotateEuler(const Vector3& angles);
+	static Matrix4 TranslateX(float delta);
+	static Matrix4 TranslateY(float delta);
+	static Matrix4 TranslateZ(float delta);
+	static Matrix4 Translate(float delta, const Vector3& axis);
+	static Matrix4 Translate(float dx, float dy, float dz);
+	static Matrix4 Translate(Vector3 dv);
 };
