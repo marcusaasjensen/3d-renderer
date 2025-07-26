@@ -123,6 +123,17 @@ Matrix4 Matrix4::translate(float dx, float dy, float dz)
 	return result;
 }
 
+Matrix4 Matrix4::translate(Vector3 dv)
+{
+	Matrix4 result = identity();
+
+	result(0, 3) = dv.x;
+	result(1, 3) = dv.y;
+	result(2, 3) = dv.z;
+
+	return result;
+}
+
 
 Matrix4 Matrix4::scaleX(float factor) {
 	Matrix4 result = identity();
@@ -149,6 +160,15 @@ Matrix4 Matrix4::scale(float factor, const Vector3& axis)
 	result(0, 0) = factor;
 	result(1, 1) = factor;
 	result(2, 2) = factor;
+	return Matrix4();
+}
+
+Matrix4 Matrix4::scale(const Vector3& factor)
+{
+	Matrix4 result = identity();
+	result(0, 0) = factor.x;
+	result(1, 1) = factor.y;
+	result(2, 2) = factor.z;
 	return Matrix4();
 }
 
@@ -191,6 +211,12 @@ Matrix4 Matrix4::rotateZ(float angle) {
 	return result;
 }
 
+Matrix4 Matrix4::rotate(const Vector3& angles) {
+	Matrix4 rx = Matrix4::rotateX(angles.x);
+	Matrix4 ry = Matrix4::rotateY(angles.y);
+	Matrix4 rz = Matrix4::rotateZ(angles.z);
+	return rz * ry * rx;
+}
 
 Matrix4 Matrix4::rotate(float angle, const Vector3& axis) {
 	Vector3 n = axis.normalized();
@@ -255,7 +281,6 @@ Matrix4 Matrix4::orthographic(float left, float right, float bottom, float top, 
 
 	return result;
 }
-
 
 std::ostream& Matrix4::operator<<(std::ostream& os) {
 	for (int row = 0; row < 4; ++row) {

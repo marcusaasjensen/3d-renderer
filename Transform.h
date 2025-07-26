@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Vector3.h"
+#include "Matrix4.h"
 
 struct Transform {
 	Vector3 position;
@@ -11,4 +12,6 @@ struct Transform {
 	Transform(const Vector3& position);
 	Transform(const Vector3& position, const Vector3& rotation);
 	Transform(const Vector3& position, const Vector3& rotation, const Vector3& scale);
+	Matrix4 getModel() const;
+
 };

@@ -7,3 +7,11 @@ Transform::Transform(const Vector3& position, const Vector3& rotation) : positio
 Transform::Transform(const Vector3& position, const Vector3& rotation, const Vector3& scale)
     : position{ position }, rotation{ rotation }, scale{ scale } {
 }
+
+Matrix4 Transform::getModel() const {
+    Matrix4 T = Matrix4::translate(position);
+    Matrix4 R = Matrix4::rotate(rotation);
+    Matrix4 S = Matrix4::scale(scale);
+    return T * R * S;
+}
+

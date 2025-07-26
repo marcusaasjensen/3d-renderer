@@ -1,4 +1,5 @@
 #include "SceneObject.h"
+#include "Scene.h"
 
 SceneObject::SceneObject() : name{ "SceneObject" }, transform{}, mesh{} {}
 SceneObject::SceneObject(const std::string& name, const Transform& transform, const Mesh& mesh) : 
@@ -29,8 +30,4 @@ const Transform& SceneObject::getTransform() const {
 
 const Mesh& SceneObject::getMesh() const {
 	return mesh;
-}
-
-void SceneObject::translate(const Vector3& delta) {
-	transform.position += delta;
 }

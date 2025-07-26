@@ -1,8 +1,8 @@
 #include "Vector3.h"
 #include <cmath>
 
-Vector3::Vector3() : x(0), y(0), z(0) {}
-Vector3::Vector3(float x, float y, float z) : x(x), y(y), z(z) {}
+Vector3::Vector3() : x{ 0 }, y{ 0 }, z{ 0 } {}
+Vector3::Vector3(float x, float y, float z) : x{ x }, y{ y }, z{ z } {}
 
 Vector3 Vector3::operator+(const Vector3& other) const {
 	return Vector3(x + other.x, y + other.y, z + other.z);
@@ -72,7 +72,7 @@ bool Vector3::operator==(const Vector3& other) const {
 
 Vector3 Vector3::normalized() const
 {
-    float length = std::sqrt(x * x + y * y + z * z);
+    float length{ std::sqrt(x * x + y * y + z * z) };
 
     if (length == 0.0f) {
         return Vector3(0.0f, 0.0f, 0.0f);

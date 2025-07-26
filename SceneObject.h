@@ -25,8 +25,4 @@ public:
 	const Transform& getTransform() const;
 
 	const Mesh& getMesh() const;
-
-	void translate(const Vector3& delta);
-	void rotate(float angle, const Vector3& axis);
-	void scale(const Vector3& factor);
 };

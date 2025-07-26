@@ -2,13 +2,13 @@
 
 Renderer::Renderer(int width, int height) : canvas(width, height) {}
 
-Canvas& Renderer::getCanvas()
-{
+Canvas& Renderer::getCanvas() {
     return canvas;
 }
 
-void Renderer::render(const SceneObject& object, const Matrix4& model, const Matrix4& proj) {
+void Renderer::render(const SceneObject& object, const Matrix4& proj) {
     const auto& mesh = object.getMesh();
+    const Matrix4& model = object.getTransform().getModel();
 
     for (size_t i = 0; i < mesh.indices.size(); i += 3) {
         Vector4 screenVerts[3];
@@ -29,9 +29,23 @@ void Renderer::render(const SceneObject& object, const Matrix4& model, const Mat
             screenVerts[j] = Vector4((float)screenX, (float)screenY, 0.0f, 1.0f);
         }
 
-        Rasterizer::drawLine((int)screenVerts[0].x, (int)screenVerts[0].y, (int)screenVerts[1].x, (int)screenVerts[1].y, canvas);
-        Rasterizer::drawLine((int)screenVerts[1].x, (int)screenVerts[1].y, (int)screenVerts[2].x, (int)screenVerts[2].y, canvas);
-        Rasterizer::drawLine((int)screenVerts[2].x, (int)screenVerts[2].y, (int)screenVerts[0].x, (int)screenVerts[0].y, canvas);
+        Rasterizer::drawLine((int)screenVerts[0].x, (int)screenVerts[0].y,
+            (int)screenVerts[1].x, (int)screenVerts[1].y,
+            canvas);
+        Rasterizer::drawLine((int)screenVerts[1].x, (int)screenVerts[1].y,
+            (int)screenVerts[2].x, (int)screenVerts[2].y,
+            canvas);
+        Rasterizer::drawLine((int)screenVerts[2].x, (int)screenVerts[2].y,
+            (int)screenVerts[0].x, (int)screenVerts[0].y,
+            canvas);
+    }
+}
+
+void Renderer::render(const Scene& scene, const Matrix4& proj) {
+    canvas.clear();
+
+    for (const SceneObject& object : scene.getObjects()) {
+        render(object, proj);
     }
 }
 
