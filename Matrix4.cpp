@@ -140,6 +140,73 @@ Matrix4 Matrix4::scale(float factor, const Vector3& axis)
 	return Matrix4();
 }
 
+Matrix4 Matrix4::rotateX(float angle) {
+	float c = std::cos(angle);
+	float s = std::sin(angle);
+
+	Matrix4 result = identity();
+	result(1,1) = c;
+	result(1,2) = -s;
+	result(2,1) = s;
+	result(2,2) = c;
+
+	return result;
+}
+
+Matrix4 Matrix4::rotateY(float angle) {
+	float c = std::cos(angle);
+	float s = std::sin(angle);
+
+	Matrix4 result = identity();
+	result(0, 0) = c;
+	result(0, 2) = s;
+	result(2, 0) = -s;
+	result(2, 2) = c;
+
+	return result;
+}
+
+Matrix4 Matrix4::rotateZ(float angle) {
+	float c = std::cos(angle);
+	float s = std::sin(angle);
+
+	Matrix4 result = identity();
+	result(0, 0) = c;
+	result(0, 1) = -s;
+	result(1, 0) = s;
+	result(1, 1) = c;
+
+	return result;
+}
+
+
+Matrix4 Matrix4::rotate(float angle, const Vector3& axis) {
+	Vector3 n = axis.normalized();
+	float x = n.x, y = n.y, z = n.z;
+	float c = std::cos(angle);
+	float s = std::sin(angle);
+	float t = 1.0f - c;
+
+	Matrix4 result = identity();
+
+	result(0, 0) = t * x * x + c;
+	result(0, 1) = t * x * y - s * z;
+	result(0, 2) = t * x * z + s * y;
+
+	result(1, 0) = t * x * y + s * z;
+	result(1, 1) = t * y * y + c;
+	result(1, 2) = t * y * z - s * x;
+
+	result(2, 0) = t * x * z - s * y;
+	result(2, 1) = t * y * z + s * x;
+	result(2, 2) = t * z * z + c;
+
+	result(0, 3) = result(1, 3) = result(2, 3) = 0.0f;
+	result(3, 0) = result(3, 1) = result(3, 2) = 0.0f;
+	result(3, 3) = 1.0f;
+
+	return result;
+}
 
 Matrix4 Matrix4::perspective(float fovY, float aspect, float znear, float zfar) {
 	Matrix4 result;

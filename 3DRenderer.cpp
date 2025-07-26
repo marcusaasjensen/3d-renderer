@@ -8,6 +8,25 @@
 const int WIDTH = 1920;
 const int HEIGHT = 1080;
 
+static void drawLine(int x0, int y0, int x1, int y1, std::vector<unsigned char>& framebuffer) {
+    int dx = std::abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
+    int dy = -std::abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
+    int err = dx + dy, e2;
+
+    while (true) {
+        if (x0 >= 0 && x0 < WIDTH && y0 >= 0 && y0 < HEIGHT) {
+            int index = (y0 * WIDTH + x0) * 3;
+            framebuffer[index + 0] = 255;
+            framebuffer[index + 1] = 255;
+            framebuffer[index + 2] = 255;
+        }
+        if (x0 == x1 && y0 == y1) break;
+        e2 = 2 * err;
+        if (e2 >= dy) { err += dy; x0 += sx; }
+        if (e2 <= dx) { err += dx; y0 += sy; }
+    }
+}
+
 int main() {
     SceneObject cube = Shape::Cube();
 
@@ -16,31 +35,34 @@ int main() {
     float znear = 0.1f;
     float zfar = 100.0f;
 
-    Matrix4 model = Matrix4::translateZ(-3.0f);
+    Matrix4 model = Matrix4::translateZ(-10.0f) * Matrix4::rotate(30.0f, Vector3(0,1,1));
     Matrix4 proj = Matrix4::perspective(fovY, aspect, znear, zfar);
 
-    // RGB buffer, initialized to black
     std::vector<unsigned char> framebuffer(WIDTH * HEIGHT * 3, 0);
 
-    for (auto& vertex : cube.getMesh().vertices) {
-        Vector4 v(vertex.position);
-        Vector4 projected = proj * (model * v);
+    const auto& mesh = cube.getMesh();
+    for (size_t i = 0; i < mesh.indices.size(); i += 3) {
+        Vector4 screenVerts[3];
 
-        if (projected.w != 0.0f) {
-            projected.x /= projected.w;
-            projected.y /= projected.w;
-            projected.z /= projected.w;
+        for (int j = 0; j < 3; ++j) {
+            int idx = mesh.indices[i + j];
+            Vector4 v(mesh.vertices[idx].position);
+            v = proj * (model * v);
+
+            if (v.w != 0.0f) {
+                v.x /= v.w;
+                v.y /= v.w;
+                v.z /= v.w;
+            }
+
+            int screenX = static_cast<int>((v.x * 0.5f + 0.5f) * WIDTH);
+            int screenY = static_cast<int>((1.0f - (v.y * 0.5f + 0.5f)) * HEIGHT);
+            screenVerts[j] = Vector4((float)screenX, (float)screenY, 0.0f, 1.0f);
         }
 
-        int screenX = static_cast<int>((projected.x * 0.5f + 0.5f) * WIDTH);
-        int screenY = static_cast<int>((1.0f - (projected.y * 0.5f + 0.5f)) * HEIGHT);
-
-        if (screenX >= 0 && screenX < WIDTH && screenY >= 0 && screenY < HEIGHT) {
-            int index = (screenY * WIDTH + screenX) * 3;
-            framebuffer[index + 0] = 255; // Red
-            framebuffer[index + 1] = 255; // Green
-            framebuffer[index + 2] = 255; // Blue
-        }
+        drawLine((int)screenVerts[0].x, (int)screenVerts[0].y, (int)screenVerts[1].x, (int)screenVerts[1].y, framebuffer);
+        drawLine((int)screenVerts[1].x, (int)screenVerts[1].y, (int)screenVerts[2].x, (int)screenVerts[2].y, framebuffer);
+        drawLine((int)screenVerts[2].x, (int)screenVerts[2].y, (int)screenVerts[0].x, (int)screenVerts[0].y, framebuffer);
     }
 
     std::ofstream out("output.ppm");
@@ -53,4 +75,5 @@ int main() {
     out.close();
 
     std::cout << "Wrote output.ppm\n";
+    return 0;
 }
