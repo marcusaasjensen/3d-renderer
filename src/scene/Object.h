@@ -1,20 +1,20 @@
 #pragma once
 #include <string>
 #include "Transform.h"
-#include "Mesh.h"
-#include "Matrix4.h"
+#include "../geometry/Mesh.h"
+#include "../math/Matrix4.h"
 
-class SceneObject {
+class Object {
 private:
 	std::string name;
 	Transform transform;
 	Mesh mesh;
 
 public:
-	SceneObject();
-	~SceneObject() = default;
-	SceneObject(const SceneObject& other) = default;
-	SceneObject(const std::string& name, const Transform& transform, const Mesh& mesh);
+	Object();
+	~Object() = default;
+	Object(const Object& other) = default;
+	Object(const std::string& name, const Transform& transform, const Mesh& mesh);
 
 public:
 	void setName(const std::string name);

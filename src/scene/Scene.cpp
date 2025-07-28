@@ -3,11 +3,11 @@
 Scene::Scene(const std::string& name) : objects{}, name {name} {
 }
 
-void Scene::addObject(const SceneObject& object) {
+void Scene::addObject(const Object& object) {
     objects.push_back(object);
 }
 
-const std::vector<SceneObject>& Scene::getObjects() const {
+const std::vector<Object>& Scene::getObjects() const {
     return objects;
 }
 

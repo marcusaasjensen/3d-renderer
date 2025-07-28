@@ -1,6 +1,6 @@
-// Camera.h
 #pragma once
-#include "Matrix4.h"
+
+#include "../math/Matrix4.h"
 
 class Camera {
 public:

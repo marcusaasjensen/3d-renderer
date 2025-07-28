@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Vector3.h"
-#include "Matrix4.h"
+#include "../math/Vector3.h"
+#include "../math/Matrix4.h"
 
 struct Transform {
 	Vector3 position;

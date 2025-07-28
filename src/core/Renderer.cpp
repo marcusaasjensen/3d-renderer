@@ -6,7 +6,7 @@ Canvas& Renderer::getCanvas() {
     return canvas;
 }
 
-void Renderer::render(const SceneObject& object, const Camera& camera) {
+void Renderer::render(const Object& object, const Camera& camera) {
     const auto& mesh = object.getMesh();
     const Matrix4& model = object.getTransform().getModel();
 
@@ -44,7 +44,7 @@ void Renderer::render(const SceneObject& object, const Camera& camera) {
 void Renderer::render(const Scene& scene, const Camera& camera) {
     canvas.clear();
 
-    for (const SceneObject& object : scene.getObjects()) {
+    for (const Object& object : scene.getObjects()) {
         render(object, camera);
     }
 }

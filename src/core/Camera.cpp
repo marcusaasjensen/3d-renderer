@@ -1,6 +1,5 @@
-// Camera.cpp
 #include "Camera.h"
-#include "Math.h"
+#include "../math/Math.h"
 
 Camera::Camera(const Matrix4& proj) : projection(proj) {}
 

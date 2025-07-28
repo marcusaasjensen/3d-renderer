@@ -103,6 +103,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -118,6 +119,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -125,38 +127,38 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Canvas.cpp" />
-    <ClCompile Include="Color.cpp" />
-    <ClCompile Include="Matrix4.cpp" />
-    <ClCompile Include="Mesh.cpp" />
-    <ClCompile Include="Rasterizer.cpp" />
-    <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="SceneObject.cpp" />
-    <ClCompile Include="Shape.cpp" />
-    <ClCompile Include="Transform.cpp" />
-    <ClCompile Include="Vector3.cpp" />
-    <ClCompile Include="Vector4.cpp" />
-    <ClCompile Include="Vertex.cpp" />
+    <ClCompile Include="src\core\Camera.cpp" />
+    <ClCompile Include="src\core\Canvas.cpp" />
+    <ClCompile Include="src\core\Rasterizer.cpp" />
+    <ClCompile Include="src\core\Renderer.cpp" />
+    <ClCompile Include="src\geometry\Mesh.cpp" />
+    <ClCompile Include="src\geometry\Shape.cpp" />
+    <ClCompile Include="src\geometry\Vertex.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\math\Matrix4.cpp" />
+    <ClCompile Include="src\math\Vector3.cpp" />
+    <ClCompile Include="src\math\Vector4.cpp" />
+    <ClCompile Include="src\scene\Object.cpp" />
+    <ClCompile Include="src\scene\Scene.cpp" />
+    <ClCompile Include="src\scene\Transform.cpp" />
+    <ClCompile Include="src\utils\Color.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="Canvas.h" />
-    <ClInclude Include="Color.h" />
-    <ClInclude Include="Math.h" />
-    <ClInclude Include="Matrix4.h" />
-    <ClInclude Include="Mesh.h" />
-    <ClInclude Include="Rasterizer.h" />
-    <ClInclude Include="Renderer.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="SceneObject.h" />
-    <ClInclude Include="Shape.h" />
-    <ClInclude Include="Transform.h" />
-    <ClInclude Include="Vector3.h" />
-    <ClInclude Include="Vector4.h" />
-    <ClInclude Include="Vertex.h" />
+    <ClInclude Include="src\core\Camera.h" />
+    <ClInclude Include="src\core\Canvas.h" />
+    <ClInclude Include="src\core\Rasterizer.h" />
+    <ClInclude Include="src\core\Renderer.h" />
+    <ClInclude Include="src\geometry\Mesh.h" />
+    <ClInclude Include="src\geometry\Shape.h" />
+    <ClInclude Include="src\geometry\Vertex.h" />
+    <ClInclude Include="src\math\Math.h" />
+    <ClInclude Include="src\math\Matrix4.h" />
+    <ClInclude Include="src\math\Vector3.h" />
+    <ClInclude Include="src\math\Vector4.h" />
+    <ClInclude Include="src\scene\Object.h" />
+    <ClInclude Include="src\scene\Scene.h" />
+    <ClInclude Include="src\scene\Transform.h" />
+    <ClInclude Include="src\utils\Color.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
