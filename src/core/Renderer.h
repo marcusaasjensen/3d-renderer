@@ -1,10 +1,10 @@
 #pragma once
 
 #include "Canvas.h"
-#include "SceneObject.h"
-#include "Scene.h"
+#include "../scene/Object.h"
+#include "../scene/Scene.h"
 #include "Rasterizer.h"
-#include "Matrix4.h"
+#include "../math/Matrix4.h"
 #include "Camera.h"
 #include <vector>
 
@@ -14,7 +14,7 @@ public:
 
     Canvas& getCanvas();
     void render(const Scene& scene, const Camera& camera);
-    void render(const SceneObject& object, const Camera& camera);
+    void render(const Object& object, const Camera& camera);
 
     void saveImage(const std::string& filename) const;
 

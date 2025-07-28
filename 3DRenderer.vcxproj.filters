@@ -1,123 +1,122 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Core">
-      <UniqueIdentifier>{33be0818-8b71-4805-85e5-78797f234a35}</UniqueIdentifier>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Source Files\Core">
+    <Filter Include="src\core">
       <UniqueIdentifier>{62f31e80-3d77-402d-8be4-f0998f459277}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Math">
+    <Filter Include="src\geometry">
+      <UniqueIdentifier>{b3b62c6f-1f78-4da5-8ffd-af45db45dec0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\math">
       <UniqueIdentifier>{60c4c167-9593-490a-b636-72a277fb4e56}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Math">
-      <UniqueIdentifier>{362f9dab-dda6-47d2-b6e3-d975ecda30d5}</UniqueIdentifier>
+    <Filter Include="src\utils">
+      <UniqueIdentifier>{a1d50e37-bf33-4c4e-8c00-9d41152049e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene">
+      <UniqueIdentifier>{06401fa7-37f5-4cbc-8e8b-7bf26d25d251}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Vector3.cpp">
-      <Filter>Source Files\Math</Filter>
+    <ClCompile Include="src\core\Camera.cpp">
+      <Filter>src\core</Filter>
     </ClCompile>
-    <ClCompile Include="Color.cpp">
-      <Filter>Source Files\Core</Filter>
+    <ClCompile Include="src\core\Canvas.cpp">
+      <Filter>src\core</Filter>
     </ClCompile>
-    <ClCompile Include="Vertex.cpp">
-      <Filter>Source Files\Core</Filter>
+    <ClCompile Include="src\core\Rasterizer.cpp">
+      <Filter>src\core</Filter>
     </ClCompile>
-    <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files\Core</Filter>
+    <ClCompile Include="src\core\Renderer.cpp">
+      <Filter>src\core</Filter>
     </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>Source Files\Core</Filter>
+    <ClCompile Include="src\geometry\Mesh.cpp">
+      <Filter>src\geometry</Filter>
     </ClCompile>
-    <ClCompile Include="Shape.cpp">
-      <Filter>Source Files\Core</Filter>
+    <ClCompile Include="src\geometry\Shape.cpp">
+      <Filter>src\geometry</Filter>
     </ClCompile>
-    <ClCompile Include="SceneObject.cpp">
-      <Filter>Source Files\Core</Filter>
+    <ClCompile Include="src\geometry\Vertex.cpp">
+      <Filter>src\geometry</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\math\Matrix4.cpp">
+      <Filter>src\math</Filter>
     </ClCompile>
-    <ClCompile Include="Matrix4.cpp">
-      <Filter>Source Files\Math</Filter>
+    <ClCompile Include="src\math\Vector3.cpp">
+      <Filter>src\math</Filter>
     </ClCompile>
-    <ClCompile Include="Vector4.cpp">
-      <Filter>Source Files\Math</Filter>
+    <ClCompile Include="src\math\Vector4.cpp">
+      <Filter>src\math</Filter>
     </ClCompile>
-    <ClCompile Include="Rasterizer.cpp">
-      <Filter>Source Files\Core</Filter>
+    <ClCompile Include="src\utils\Color.cpp">
+      <Filter>src\utils</Filter>
     </ClCompile>
-    <ClCompile Include="Canvas.cpp">
-      <Filter>Source Files\Core</Filter>
+    <ClCompile Include="src\scene\Object.cpp">
+      <Filter>src\scene</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Source Files\Core</Filter>
+    <ClCompile Include="src\scene\Scene.cpp">
+      <Filter>src\scene</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source Files\Core</Filter>
+    <ClCompile Include="src\scene\Transform.cpp">
+      <Filter>src\scene</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files\Core</Filter>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Vector3.h">
-      <Filter>Header Files\Math</Filter>
+    <ClInclude Include="src\core\Camera.h">
+      <Filter>src\core</Filter>
     </ClInclude>
-    <ClInclude Include="Color.h">
-      <Filter>Header Files\Core</Filter>
+    <ClInclude Include="src\core\Canvas.h">
+      <Filter>src\core</Filter>
     </ClInclude>
-    <ClInclude Include="Vertex.h">
-      <Filter>Header Files\Core</Filter>
+    <ClInclude Include="src\core\Rasterizer.h">
+      <Filter>src\core</Filter>
     </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Header Files\Core</Filter>
+    <ClInclude Include="src\core\Renderer.h">
+      <Filter>src\core</Filter>
     </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>Header Files\Core</Filter>
+    <ClInclude Include="src\geometry\Mesh.h">
+      <Filter>src\geometry</Filter>
     </ClInclude>
-    <ClInclude Include="SceneObject.h">
-      <Filter>Header Files\Core</Filter>
+    <ClInclude Include="src\geometry\Shape.h">
+      <Filter>src\geometry</Filter>
     </ClInclude>
-    <ClInclude Include="Shape.h">
-      <Filter>Header Files\Core</Filter>
+    <ClInclude Include="src\geometry\Vertex.h">
+      <Filter>src\geometry</Filter>
     </ClInclude>
-    <ClInclude Include="Matrix4.h">
-      <Filter>Header Files\Math</Filter>
+    <ClInclude Include="src\math\Math.h">
+      <Filter>src\math</Filter>
     </ClInclude>
-    <ClInclude Include="Vector4.h">
-      <Filter>Header Files\Math</Filter>
+    <ClInclude Include="src\math\Matrix4.h">
+      <Filter>src\math</Filter>
     </ClInclude>
-    <ClInclude Include="Rasterizer.h">
-      <Filter>Header Files\Core</Filter>
+    <ClInclude Include="src\math\Vector3.h">
+      <Filter>src\math</Filter>
     </ClInclude>
-    <ClInclude Include="Canvas.h">
-      <Filter>Header Files\Core</Filter>
+    <ClInclude Include="src\math\Vector4.h">
+      <Filter>src\math</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Header Files\Core</Filter>
+    <ClInclude Include="src\utils\Color.h">
+      <Filter>src\utils</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Header Files\Core</Filter>
+    <ClInclude Include="src\scene\Object.h">
+      <Filter>src\scene</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files\Core</Filter>
+    <ClInclude Include="src\scene\Scene.h">
+      <Filter>src\scene</Filter>
     </ClInclude>
-    <ClInclude Include="Math.h">
-      <Filter>Header Files\Math</Filter>
+    <ClInclude Include="src\scene\Transform.h">
+      <Filter>src\scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

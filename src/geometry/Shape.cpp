@@ -1,8 +1,8 @@
 #include "Shape.h"
-#include "Math.h"
+#include "../math/Math.h"
 
-SceneObject Shape::Quad(const Transform& transform) {
-    return SceneObject("Quad", transform, {
+Object Shape::Quad(const Transform& transform) {
+    return Object("Quad", transform, {
         {
             Vertex(0, 0, 0),
             Vertex(1, 0, 0),
@@ -16,8 +16,8 @@ SceneObject Shape::Quad(const Transform& transform) {
     });
 }
 
-SceneObject Shape::Cube(const Transform& transform) {
-    return SceneObject("Cube", transform, {
+Object Shape::Cube(const Transform& transform) {
+    return Object("Cube", transform, {
         {
             Vertex(-0.5f, -0.5f,  0.5f),
             Vertex(0.5f, -0.5f,  0.5f),
@@ -45,7 +45,7 @@ SceneObject Shape::Cube(const Transform& transform) {
     });
 }
 
-SceneObject Shape::Sphere(const Transform& transform) {
+Object Shape::Sphere(const Transform& transform) {
     const int stacks { 16 };
     const int slices { 32 };
     const float radius { 0.5f };
@@ -84,11 +84,11 @@ SceneObject Shape::Sphere(const Transform& transform) {
         }
     }
 
-    return SceneObject("Sphere", transform, { vertices, indices });
+    return Object("Sphere", transform, { vertices, indices });
 }
 
 
-SceneObject Shape::Plane(const Transform& transform) {
+Object Shape::Plane(const Transform& transform) {
     Mesh mesh = {
         {
             Vertex(-0.5f, 0.0f, -0.5f),
@@ -102,10 +102,10 @@ SceneObject Shape::Plane(const Transform& transform) {
         }
     };
 
-    return SceneObject("Plane", transform, mesh);
+    return Object("Plane", transform, mesh);
 }
 
-SceneObject Shape::Tetrahedron(const Transform& transform) {
+Object Shape::Tetrahedron(const Transform& transform) {
     std::vector<Vertex> vertices = {
         Vertex(.5f,  .5f,  .5f),
         Vertex(-.5f, -.5f,  .5f),
@@ -120,10 +120,10 @@ SceneObject Shape::Tetrahedron(const Transform& transform) {
         1, 3, 2
     };
 
-    return SceneObject("Tetrahedron", transform, { vertices, indices });
+    return Object("Tetrahedron", transform, { vertices, indices });
 }
 
-SceneObject Shape::Cylinder(const Transform& transform) {
+Object Shape::Cylinder(const Transform& transform) {
     std::vector<Vertex> vertices;
     std::vector<unsigned int> indices;
     const int segments = 32;
@@ -178,6 +178,6 @@ SceneObject Shape::Cylinder(const Transform& transform) {
         indices.push_back(next);
     }
 
-    return SceneObject("Cylinder", transform, { vertices, indices });
+    return Object("Cylinder", transform, { vertices, indices });
 }
 
