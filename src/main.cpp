@@ -44,7 +44,6 @@ static Camera createCamera() {
 
 static void render(const Scene& scene, const Camera& camera, const std::string& filename) {
     Renderer renderer(WIDTH, HEIGHT);
-    renderer.getCanvas().clear();
     renderer.render(scene, camera);
     renderer.saveImage(filename);
 }

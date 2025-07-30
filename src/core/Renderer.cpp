@@ -29,15 +29,8 @@ void Renderer::render(const Object& object, const Camera& camera) {
             screenVerts[j] = Vector4((float)screenX, (float)screenY, 0.0f, 1.0f);
         }
 
-        Rasterizer::drawLine((int)screenVerts[0].x, (int)screenVerts[0].y,
-            (int)screenVerts[1].x, (int)screenVerts[1].y,
-            canvas);
-        Rasterizer::drawLine((int)screenVerts[1].x, (int)screenVerts[1].y,
-            (int)screenVerts[2].x, (int)screenVerts[2].y,
-            canvas);
-        Rasterizer::drawLine((int)screenVerts[2].x, (int)screenVerts[2].y,
-            (int)screenVerts[0].x, (int)screenVerts[0].y,
-            canvas);
+        Rasterizer::fillTriangle(screenVerts[0].toVector3(), screenVerts[1].toVector3(), screenVerts[2].toVector3(), canvas);
+        Rasterizer::drawTriangle(screenVerts[0].toVector3(), screenVerts[1].toVector3(), screenVerts[2].toVector3(), canvas);
     }
 }
 

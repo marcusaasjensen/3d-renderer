@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 struct Vector3 {
 	float x, y, z;
@@ -26,3 +27,7 @@ struct Vector3 {
 	static Vector3 up() { return Vector3(0, 1, 0); }
 	static Vector3 right() { return Vector3(1, 0, 0); }
 };
+
+inline std::ostream& operator<<(std::ostream& os, const Vector3& vec) {
+	return os << "(" << vec.x << ", " << vec.y << ", " << vec.z << ")";
+}
