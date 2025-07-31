@@ -9,6 +9,8 @@ Canvas& Renderer::getCanvas() {
 void Renderer::render(const Object& object, const Camera& camera) {
     const auto& mesh = object.getMesh();
     const Matrix4& model = object.getTransform().getModel();
+    const Matrix4& projection = camera.getProjection();
+    const Matrix4& view = camera.getView();
 
     for (size_t i = 0; i < mesh.indices.size(); i += 3) {
         Vector4 screenVerts[3];
@@ -16,7 +18,7 @@ void Renderer::render(const Object& object, const Camera& camera) {
         for (int j = 0; j < 3; ++j) {
             int idx = mesh.indices[i + j];
             Vector4 v(mesh.vertices[idx].position);
-            v = camera.getProjection() * (model * v);
+            v = projection * (view * (model * v));
 
             if (v.w != 0.0f) {
                 v.x /= v.w;

@@ -11,7 +11,7 @@ void Rasterizer::drawLine(int x0, int y0, int x1, int y1, Canvas& canvas) {
     int err{ dx + dy }, e2;
 
     while (true) {
-        canvas.setPixel(x0, y0, 0, 0, 0);
+        canvas.setPixel(x0, y0, 255, 255, 255);
         if (x0 == x1 && y0 == y1) break;
         e2 = 2 * err;
         if (e2 >= dy) { err += dy; x0 += sx; }

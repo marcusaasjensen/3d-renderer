@@ -26,6 +26,8 @@ struct Vector3 {
 
 	static Vector3 up() { return Vector3(0, 1, 0); }
 	static Vector3 right() { return Vector3(1, 0, 0); }
+	float Dot(const Vector3& other) const;
+	Vector3 Cross(const Vector3& other) const;
 };
 
 inline std::ostream& operator<<(std::ostream& os, const Vector3& vec) {

@@ -82,6 +82,31 @@ Matrix4 Matrix4::Transpose() const {
 	return result;
 }
 
+Matrix4 Matrix4::Inverse() const {
+	Matrix4 result;
+
+	result(0, 0) = m[0];  result(1, 0) = m[1];  result(2, 0) = m[2];
+	result(0, 1) = m[4];  result(1, 1) = m[5];  result(2, 1) = m[6];
+	result(0, 2) = m[8];  result(1, 2) = m[9];  result(2, 2) = m[10];
+
+	float tx = m[12];
+	float ty = m[13];
+	float tz = m[14];
+
+	result(0, 3) = -(result(0, 0) * tx + result(0, 1) * ty + result(0, 2) * tz);
+	result(1, 3) = -(result(1, 0) * tx + result(1, 1) * ty + result(1, 2) * tz);
+	result(2, 3) = -(result(2, 0) * tx + result(2, 1) * ty + result(2, 2) * tz);
+
+	result(3, 0) = 0.0f;
+	result(3, 1) = 0.0f;
+	result(3, 2) = 0.0f;
+	result(3, 3) = 1.0f;
+
+	return result;
+}
+
+
+
 Matrix4 Matrix4::TranslateX(float delta) {
 	Matrix4 result = Identity();
 	result(0, 3) = delta;
@@ -133,7 +158,6 @@ Matrix4 Matrix4::Translate(Vector3 dv)
 
 	return result;
 }
-
 
 Matrix4 Matrix4::ScaleX(float factor) {
 	Matrix4 result = Identity();
@@ -282,13 +306,31 @@ Matrix4 Matrix4::Orthographic(float left, float right, float bottom, float top, 
 	return result;
 }
 
-std::ostream& Matrix4::operator<<(std::ostream& os) {
-	for (int row = 0; row < 4; ++row) {
-		os << "| ";
-		for (int col = 0; col < 4; ++col) {
-			os << (*this)(row, col) << " ";
-		}
-		os << "|\n";
-	}
-	return os;
+Matrix4 Matrix4::LookAt(const Vector3& eye, const Vector3& target, const Vector3& up) {
+	Vector3 zaxis = (eye - target).normalized();
+	Vector3 xaxis = up.Cross(zaxis).normalized(); 
+	Vector3 yaxis = zaxis.Cross(xaxis);
+
+	Matrix4 result;
+	result(0, 0) = xaxis.x;
+	result(1, 0) = xaxis.y;
+	result(2, 0) = xaxis.z;
+	result(3, 0) = -xaxis.Dot(eye);
+
+	result(0, 1) = yaxis.x;
+	result(1, 1) = yaxis.y;
+	result(2, 1) = yaxis.z;
+	result(3, 1) = -yaxis.Dot(eye);
+
+	result(0, 2) = zaxis.x;
+	result(1, 2) = zaxis.y;
+	result(2, 2) = zaxis.z;
+	result(3, 2) = -zaxis.Dot(eye);
+
+	result(0, 3) = 0;
+	result(1, 3) = 0;
+	result(2, 3) = 0;
+	result(3, 3) = 1;
+
+	return result;
 }
