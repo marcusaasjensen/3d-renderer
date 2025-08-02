@@ -2,7 +2,11 @@
 #include "Scene.h"
 
 Object::Object() : name{ "Object" }, transform{}, mesh{} {}
-Object::Object(const std::string& name, const Transform& transform, const Mesh& mesh) : 
+
+Object::Object(const std::string& name, const Mesh& mesh) : name{ name }, transform{}, mesh{ mesh }  {
+}
+
+Object::Object(const std::string& name, const Transform& transform, const Mesh& mesh) :
 	name{ name }, 
 	transform{ transform }, 
 	mesh{ mesh } {

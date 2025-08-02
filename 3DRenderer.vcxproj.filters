@@ -71,6 +71,9 @@
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\geometry\MeshImporter.cpp">
+      <Filter>src\geometry</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\Camera.h">
@@ -117,6 +120,9 @@
     </ClInclude>
     <ClInclude Include="src\scene\Transform.h">
       <Filter>src\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\geometry\MeshImporter.h">
+      <Filter>src\geometry</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -14,6 +14,7 @@ public:
 	Object();
 	~Object() = default;
 	Object(const Object& other) = default;
+	Object(const std::string& name, const Mesh& mesh);
 	Object(const std::string& name, const Transform& transform, const Mesh& mesh);
 
 public:
