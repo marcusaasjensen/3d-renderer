@@ -1,6 +1,7 @@
 #include "Canvas.h"
 #include <fstream>
 #include <iostream>
+#include <filesystem>
 
 Canvas::Canvas(int w, int h) : width(w), height(h), buffer(w* h * 3, 0) {}
 
@@ -17,7 +18,28 @@ void Canvas::clear() {
 }
 
 void Canvas::saveToPPM(const std::string& filename) const {
+    namespace fs = std::filesystem;
+
+    fs::path filePath(filename);
+    fs::path dir = filePath.parent_path();
+
+    if (!dir.empty() && !fs::exists(dir)) {
+        try {
+            fs::create_directories(dir);
+            std::cout << "Created directory: " << dir << std::endl;
+        }
+        catch (const fs::filesystem_error& e) {
+            std::cerr << "Error creating directory: " << e.what() << std::endl;
+            return;
+        }
+    }
+
     std::ofstream out(filename);
+    if (!out) {
+        std::cerr << "Failed to open file for writing: " << filename << std::endl;
+        return;
+    }
+
     out << "P3\n" << width << " " << height << "\n255\n";
     for (size_t i = 0; i < buffer.size(); i += 3) {
         out << (int)buffer[i] << " " << (int)buffer[i + 1] << " " << (int)buffer[i + 2] << "\n";
@@ -25,3 +47,4 @@ void Canvas::saveToPPM(const std::string& filename) const {
     out.close();
     std::cout << "Wrote " << filename << std::endl;
 }
+

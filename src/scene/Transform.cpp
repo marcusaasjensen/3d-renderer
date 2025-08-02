@@ -10,18 +10,18 @@ Transform::Transform(const Vector3& position, const Vector3& rotation, const Vec
 }
 
 void Transform::setPosition(float x, float y, float z) {
-    position = Vector3(x, y,z);
+    position = { x, y, z };
 }
 
 void Transform::setRotation(float xAngle, float yAngle, float zAngle) {
     float x{ Math::toRadians(xAngle) };
     float y{ Math::toRadians(yAngle) };
     float z{ Math::toRadians(zAngle) };
-    rotation = Vector3(x, y,z);
+    rotation = { x, y, z };
 }
 
 void Transform::setScale(float x, float y, float z) {
-    scale = Vector3(x, y, z);
+    scale = { x, y, z };
 }
 
 Matrix4 Transform::getModel() const {

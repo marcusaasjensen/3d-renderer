@@ -70,3 +70,5 @@ _ReSharper*/
 *.temp
 
 # Others you might add manually depending on tools
+
+[Oo]utput/

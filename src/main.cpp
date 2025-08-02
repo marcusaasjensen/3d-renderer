@@ -6,20 +6,22 @@
 #include "core/Camera.h"
 #include "math/Math.h"
 
-const int WIDTH{ 1920 };
-const int HEIGHT{ 1080 };
+const int WIDTH{ 2560 };
+const int HEIGHT{ 1440 };
 
 static Scene createScene() {
     Object cube { Shape::Cube() };
-    cube.getTransform().setPosition(-2.0f, 0.0f, -4.5f);
-    cube.getTransform().setRotation(0.0f, 30.0f, 90.0f);
+    cube.getTransform().setPosition(-.5f, 0.0f, -3.9f);
+    cube.getTransform().setRotation(30.0f, 40.0f, 60.0f);
+    cube.getTransform().setScale(0.75f, 0.75f, 0.75f);
 
     Object sphere{ Shape::Sphere() };
-    sphere.getTransform().setPosition(1.0f, -0.25f, -2.5f);
+    sphere.getTransform().setPosition(1.0f, -0.25f, -3.75f);
 
     Object tetra { Shape::Tetrahedron() };
-    tetra.getTransform().setPosition(1.0f, 1.0f, -4.0f);
-    tetra.getTransform().setRotation(0.0f, 45.0f, 0.0f);
+    tetra.getTransform().setPosition(0.75f, 0.0f, -3.25f);
+    tetra.getTransform().setRotation(0.0f, 60.0f, 30.0f);
+    tetra.getTransform().setScale(0.5f, 0.5f, 0.5f);
 
     Object cylinder{ Shape::Cylinder() };
     cylinder.getTransform().setPosition(0.0f, 0.0f, -4.0f);
@@ -43,17 +45,20 @@ static Camera createCamera() {
     return camera;
 }
 
-static void render(const Scene& scene, const Camera& camera, const std::string& filename) {
+static void render(const Scene& scene, const Camera& camera, const std::string& filename, RendererMode mode = RENDER_SHADER) {
     Renderer renderer(WIDTH, HEIGHT);
-    renderer.render(scene, camera);
+    renderer.render(scene, camera, mode);
     renderer.saveImage(filename);
 }
 
 int main() {
     const Scene scene = createScene();
     const Camera camera = createCamera();
-    const std::string filename = "output.ppm";
 
-    render(scene, camera, filename);
+    render(scene, camera, "output/shaded.ppm");
+    //render(scene, camera, "output/wireframe.ppm", RENDER_WIREFRAME);
+    render(scene, camera, "output/zbuffer.ppm", RENDER_ZBUFFER);
+    //render(scene, camera, "output/shaded_wireframe.ppm", (RendererMode)(RENDER_SHADER | RENDER_WIREFRAME));
+
     return 0;
 }

@@ -308,24 +308,24 @@ Matrix4 Matrix4::Orthographic(float left, float right, float bottom, float top, 
 
 Matrix4 Matrix4::LookAt(const Vector3& eye, const Vector3& target, const Vector3& up) {
 	Vector3 zaxis = (eye - target).normalized();
-	Vector3 xaxis = up.Cross(zaxis).normalized(); 
-	Vector3 yaxis = zaxis.Cross(xaxis);
+	Vector3 xaxis = up.cross(zaxis).normalized(); 
+	Vector3 yaxis = zaxis.cross(xaxis);
 
 	Matrix4 result;
 	result(0, 0) = xaxis.x;
 	result(1, 0) = xaxis.y;
 	result(2, 0) = xaxis.z;
-	result(3, 0) = -xaxis.Dot(eye);
+	result(3, 0) = -xaxis.dot(eye);
 
 	result(0, 1) = yaxis.x;
 	result(1, 1) = yaxis.y;
 	result(2, 1) = yaxis.z;
-	result(3, 1) = -yaxis.Dot(eye);
+	result(3, 1) = -yaxis.dot(eye);
 
 	result(0, 2) = zaxis.x;
 	result(1, 2) = zaxis.y;
 	result(2, 2) = zaxis.z;
-	result(3, 2) = -zaxis.Dot(eye);
+	result(3, 2) = -zaxis.dot(eye);
 
 	result(0, 3) = 0;
 	result(1, 3) = 0;
