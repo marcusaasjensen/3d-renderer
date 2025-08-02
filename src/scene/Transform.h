@@ -12,6 +12,11 @@ struct Transform {
 	Transform(const Vector3& position);
 	Transform(const Vector3& position, const Vector3& rotation);
 	Transform(const Vector3& position, const Vector3& rotation, const Vector3& scale);
+	void setPosition(float x, float y, float z);
+	void setRotation(float x, float y, float z);
+	void setScale(float x, float y, float z);
 	Matrix4 getModel() const;
-
+	Vector3 getForward() const;
+	Vector3 getUp() const;
+	Vector3 getRight() const;
 };

@@ -6,4 +6,6 @@ struct Color {
 	Color();
 	Color(float r, float g, float b);
 
+	static const Color& random();
+
 };

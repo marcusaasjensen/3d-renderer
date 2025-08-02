@@ -12,3 +12,7 @@ struct Vector4 {
     Vector4 operator*(float scalar) const;
     Vector3 toVector3() const;
 };
+
+inline std::ostream& operator<<(std::ostream& os, const Vector4& vec) {
+    return os << "(" << vec.x << ", " << vec.y << ", " << vec.z << ", " << vec.w << ")";
+}
