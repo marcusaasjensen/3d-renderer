@@ -1,5 +1,5 @@
 # 🖼️ 3D Renderer in C++
-A CPU-based 3D wireframe renderer written in C++, supporting simple primitive shapes and built entirely from scratch.
+A CPU-based 3D renderer written in C++, supporting simple primitive shapes and built entirely from scratch.
 
 Upload the `.ppm` image file here to visualize the result: <href src="https://www.cs.rhodes.edu/welshc/COMP141_F16/ppmReader.html">https://www.cs.rhodes.edu/welshc/COMP141_F16/ppmReader.html</href>
 
