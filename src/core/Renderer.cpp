@@ -15,16 +15,24 @@ std::vector<Vector3> Renderer::getProjectedVertices(const Object& object, const 
     const Matrix4& view = camera.getView();
 
     for (size_t i = 0; i < mesh.indices.size(); i += 3) {
+        bool skip = false;
         for (int j = 0; j < 3; ++j) {
             int idx = mesh.indices[i + j];
             Vector4 v(mesh.vertices[idx].position);
             v = projection * (view * (model * v));
+
+            if (v.w <= 0.0f) {
+                skip = true;
+                break;
+            }
 
             if (v.w != 0.0f) {
                 v.x /= v.w;
                 v.y /= v.w;
                 v.z /= v.w;
             }
+
+            if (skip) continue;
 
             int screenX = static_cast<int>((v.x * 0.5f + 0.5f) * canvas.getWidth());
             int screenY = static_cast<int>((1.0f - (v.y * 0.5f + 0.5f)) * canvas.getHeight());
