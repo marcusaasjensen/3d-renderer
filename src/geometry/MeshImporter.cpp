@@ -26,12 +26,27 @@ Mesh MeshImporter::import(const std::string& filename) {
             mesh.vertices.emplace_back(x, y, z);
         }
         else if (prefix == "f") {
-            int a, b, c;
-            iss >> a >> b >> c;
-            mesh.indices.push_back(a - 1);
-            mesh.indices.push_back(b - 1);
-            mesh.indices.push_back(c - 1);
+            std::vector<std::string> tokens;
+            std::string token;
+            while (iss >> token) {
+                tokens.push_back(token);
+            }
+
+            auto parseIndex = [](const std::string& tok) {
+                std::istringstream ss(tok);
+                std::string indexStr;
+                std::getline(ss, indexStr, '/');
+                return std::stoi(indexStr) - 1;
+                };
+
+            for (size_t i = 1; i + 1 < tokens.size(); i++) {
+                mesh.indices.push_back(parseIndex(tokens[0]));
+                mesh.indices.push_back(parseIndex(tokens[i]));
+                mesh.indices.push_back(parseIndex(tokens[i + 1]));
+            }
         }
+
+
     }
 
     return mesh;

@@ -31,16 +31,22 @@ static Scene createScene() {
     cylinder.getTransform().setRotation(40.0f, 10.0f, 10.0f);
     cylinder.getTransform().setScale(0.75f, 0.6f, 0.75f);
 
+    Object suzanne{ "Suzanne", MeshImporter::import("assets/suzanne.obj") };
+    suzanne.getTransform().setPosition(0.2f, .0f, -4.75f);
+    suzanne.getTransform().setRotation(20.f, 20.0f, 20.f);
+    suzanne.getTransform().setScale(0.35f, 0.35f, 0.35f);
+
     Object teapot{ "Utah Teapot", MeshImporter::import("assets/teapot.obj") };
-    teapot.getTransform().setPosition(0.2f, -1.0f, -4.f);
-    teapot.getTransform().setRotation(20.f, 20.0f, 20.f);
-    teapot.getTransform().setScale(0.35f, 0.35f, 0.35f);
+    teapot.getTransform().setPosition(1.2f, -1.25f, -4.f);
+    teapot.getTransform().setRotation(0.f, 20.0f, 20.f);
+    teapot.getTransform().setScale(0.2f, 0.2f, 0.2f);
 
     Scene scene("MyScene");
     scene.addObject(cube);
     scene.addObject(sphere);
     scene.addObject(tetra);
     scene.addObject(cylinder);
+    scene.addObject(suzanne);
     scene.addObject(teapot);
 
     return scene;
