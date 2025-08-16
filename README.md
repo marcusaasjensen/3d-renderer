@@ -17,23 +17,37 @@ Supports simple `.obj` imports (assets/teapot.obj).
 ## Rendering Pipeline Stages
 
 - **Object Space (Local Space)**  
+
   Vertices are defined relative to each object's origin.  
+
   Example: A unit cube centered at (0,0,0).
 
 - **World Space**  
+
   The object's local transform (position, rotation, scale) is applied.  
+
   All objects now share a common 3D world space.
 
 - **Camera (View) Space**  
+
   The scene is transformed relative to the camera’s position and orientation.
 
 - **Normalized Device Coordinates (NDC)**  
+
   All geometry is normalized into the range [-1, 1].
 
 - **Screen Space**  
+
   NDC is mapped to 2D pixel coordinates on the canvas.
 
 - **Rasterization**
+
   Z-Buffer precalculated and used for triangles rasterization.
+  
+<img style="width: 50%; height: auto;" alt="suzanne_z" src="https://github.com/user-attachments/assets/15173b20-71af-4c17-9ac7-f55d9a45c2bc" />
+
   Vertices that are outside of the camera's view are ignored.
+
   Wireframe triangles are rasterized onto the canvas.
+  
+<img style="width: 50%; height: auto;" alt="suzanne_wireframe" src="https://github.com/user-attachments/assets/4ded6d99-e889-4c36-a4d1-b14c8eb235c9" /><img style="width: 50%; height: auto;" alt="suzanne" src="https://github.com/user-attachments/assets/1d37ae3c-9b48-4fcc-98ec-b5488b3ac546" />
