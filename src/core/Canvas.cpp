@@ -34,17 +34,18 @@ void Canvas::saveToPPM(const std::string& filename) const {
         }
     }
 
-    std::ofstream out(filename);
+    std::ofstream out(filename, std::ios::binary);
     if (!out) {
         std::cerr << "Failed to open file for writing: " << filename << std::endl;
         return;
     }
 
-    out << "P3\n" << width << " " << height << "\n255\n";
-    for (size_t i = 0; i < buffer.size(); i += 3) {
-        out << (int)buffer[i] << " " << (int)buffer[i + 1] << " " << (int)buffer[i + 2] << "\n";
-    }
+    out << "P6\n" << width << " " << height << "\n255\n";
+
+    out.write(reinterpret_cast<const char*>(buffer.data()), buffer.size());
+
     out.close();
-    std::cout << "Wrote " << filename << std::endl;
+    std::cout << "Wrote " << filename << " in binary PPM (P6)\n";
 }
+
 

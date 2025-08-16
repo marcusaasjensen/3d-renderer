@@ -45,8 +45,6 @@ Mesh MeshImporter::import(const std::string& filename) {
                 mesh.indices.push_back(parseIndex(tokens[i + 1]));
             }
         }
-
-
     }
 
     return mesh;

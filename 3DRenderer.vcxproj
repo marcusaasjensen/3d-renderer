@@ -161,6 +161,8 @@
     <ClInclude Include="src\scene\Scene.h" />
     <ClInclude Include="src\scene\Transform.h" />
     <ClInclude Include="src\utils\Color.h" />
+    <ClInclude Include="src\utils\LogFile.h" />
+    <ClInclude Include="src\utils\Timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
