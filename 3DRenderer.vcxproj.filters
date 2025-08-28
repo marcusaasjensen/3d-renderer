@@ -124,5 +124,11 @@
     <ClInclude Include="src\geometry\MeshImporter.h">
       <Filter>src\geometry</Filter>
     </ClInclude>
+    <ClInclude Include="src\utils\Timer.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\LogFile.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

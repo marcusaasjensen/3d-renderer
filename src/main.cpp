@@ -6,6 +6,8 @@
 #include "core/Camera.h"
 #include "math/Math.h"
 #include "geometry/MeshImporter.h"
+#include "utils/Timer.h"
+#include "utils/LogFile.h"
 
 const int WIDTH{ 1920 };
 const int HEIGHT{ 1080 };
@@ -68,13 +70,28 @@ static void render(const Scene& scene, const Camera& camera, const std::string& 
 }
 
 int main() {
+    LogFile log("output/logs.txt");
+
     const Scene scene = createScene();
     const Camera camera = createCamera();
 
-    render(scene, camera, "output/shaded.ppm");
-    render(scene, camera, "output/wireframe.ppm", RENDER_WIREFRAME);
-    render(scene, camera, "output/zbuffer.ppm", RENDER_ZBUFFER);
-    render(scene, camera, "output/shaded_wireframe.ppm", (RendererMode)(RENDER_SHADER | RENDER_WIREFRAME));
+    {
+        Timer t("Shaded render");
+        render(scene, camera, "output/shaded.ppm");
+    }
+    {
+        Timer t("Wireframe render");
+        render(scene, camera, "output/wireframe.ppm", RENDER_WIREFRAME);
+    }
+    {
+        Timer t("ZBuffer render");
+        render(scene, camera, "output/zbuffer.ppm", RENDER_ZBUFFER);
+    }
+    {
+        Timer t("Shaded+Wireframe render");
+        render(scene, camera, "output/shaded_wireframe.ppm",
+            (RendererMode)(RENDER_SHADER | RENDER_WIREFRAME));
+    }
 
     return 0;
 }
