@@ -1,41 +1,53 @@
 # 🖼️ 3D Renderer in C++
-A CPU-based 3D wireframe renderer written in C++, supporting simple primitive shapes and built entirely from scratch.
+A CPU-based 3D renderer written in C++, supporting simple primitive shapes and built entirely from scratch.
 
-*Work in progress...*
+Upload the `.ppm` image file here to visualize the result: <href src="https://www.cs.rhodes.edu/welshc/COMP141_F16/ppmReader.html">https://www.cs.rhodes.edu/welshc/COMP141_F16/ppmReader.html</href>
+
+---
+
+Supports both **perspective** and **orthographic** projections.
+
+Supports simple `.obj` imports (assets/teapot.obj).
+
+> *Work in progress...*
 
 ## Example Scene Render (Perspective View)
-
-<img width="1920" height="1080" alt="myScene" src="https://github.com/user-attachments/assets/fc6b9eeb-0710-4567-bd01-c2db6187dbd8" />
-
-> **Note:** This renderer supports both **perspective** and **orthographic** projections.
+<img style="width: 50%; height: auto;" alt="shaded" src="https://github.com/user-attachments/assets/15fdd5e6-cbb4-4707-b120-cd86f6e98816" /><img style="width: 50%; height: auto;" alt="zbuffer" src="https://github.com/user-attachments/assets/1a9db2a2-43a6-48d4-9f3b-e6f89d200de1" /><img style="width: 50%; height: auto;" alt="wireframe" src="https://github.com/user-attachments/assets/cd2f8b72-7aa9-4921-8a46-783a0146263f" /><img style="width: 50%; height: auto;" alt="shaded_wireframe" src="https://github.com/user-attachments/assets/715dda8d-4f4b-4e37-803c-a37a25b38923" />
 
 ## Rendering Pipeline Stages
 
 - **Object Space (Local Space)**  
+
   Vertices are defined relative to each object's origin.  
+
   Example: A unit cube centered at (0,0,0).
 
 - **World Space**  
+
   The object's local transform (position, rotation, scale) is applied.  
+
   All objects now share a common 3D world space.
 
 - **Camera (View) Space**  
+
   The scene is transformed relative to the camera’s position and orientation.
 
-- **Clip Space**  
-  A projection matrix (perspective or orthographic) transforms 3D coordinates  
-  into a canonical view volume.
-
 - **Normalized Device Coordinates (NDC)**  
-  The result of clip-space coordinates divided by W.  
+
   All geometry is normalized into the range [-1, 1].
 
 - **Screen Space**  
+
   NDC is mapped to 2D pixel coordinates on the canvas.
 
-- **Rasterization**  
+- **Rasterization**
+
+  Z-Buffer precalculated and used for triangles rasterization.
+  
+<img style="width: 50%; height: auto;" alt="suzanne_z" src="https://github.com/user-attachments/assets/15173b20-71af-4c17-9ac7-f55d9a45c2bc" />
+
+  Vertices that are outside of the camera's view are ignored.
+
   Wireframe triangles are rasterized onto the canvas.
-
-- **Framebuffer / Output**  
-  The canvas is saved to a `.ppm` image file (e.g., `output.ppm`).
-
+  
+<img style="width: 50%; height: auto;" alt="suzanne_wireframe" src="https://github.com/user-attachments/assets/4ded6d99-e889-4c36-a4d1-b14c8eb235c9" /><img style="width: 50%; height: auto;" alt="suzanne" src="https://github.com/user-attachments/assets/1d37ae3c-9b48-4fcc-98ec-b5488b3ac546" />
